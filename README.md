@@ -1,6 +1,6 @@
 # C Template
 
-A template for a C project that uses just as the build system, compatible with NixOS.
+A template for a C project that uses `just` as the build system, compatible with NixOS.
 
 ## Building and Running
 
