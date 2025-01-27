@@ -11,7 +11,9 @@ configure:
     rm -rf build
     mkdir -p build
     cp -r src/* build/
-    cp -r include/* build/
+    if [ -d "include" ] && [ "$(ls -A include)" ]; then \
+        cp -r include/* build/; \
+    fi
 
 generate-compile-commands:
     bear -- just build
