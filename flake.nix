@@ -64,7 +64,13 @@
             cp out/${pname} $out/bin
           '';
         };
+
         packages.default = self.packages.${system}.${pname};
+
+        templates.default = {
+          path = ./.;
+          description = "A template for a C project using just as a build system.";
+        };
       }
     );
 }
