@@ -19,3 +19,5 @@ generate-compile-commands:
 clean:
     rm -rf build
     rm -rf out
+    rm -rf result
+    rm compile_commands.json
