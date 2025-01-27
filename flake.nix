@@ -17,6 +17,7 @@
           inherit system;
         };
 
+        # the name of your project.
         pname = "hello";
       in
       {
@@ -30,6 +31,9 @@
             bear
           ];
 
+          # adds the paths to the folders containing the standard headerfiles to CPATH.
+          # this is not required to compile a c program, but it helps bear to generate
+          # compile_commands.json.
           shellHook = ''
             export CPATH="${pkgs.glibc.dev}/include:$(dirname $(dirname $(which clang)))/resource-root/include:$CPATH"
           '';
@@ -41,11 +45,15 @@
 
           src = ./.;
 
+          # add your build dependencies here.
           nativeBuildInputs = with pkgs; [
             just
 
             clang
           ];
+
+          # add your runtime dependencies here.
+          buildInputs = [ ];
 
           buildPhase = ''
             just build
