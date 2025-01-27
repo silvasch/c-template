@@ -12,3 +12,7 @@ configure:
     mkdir -p build
     cp -r src/* build/
     cp -r include/* build/
+
+clean:
+    rm -rf build
+    rm -rf out
