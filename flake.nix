@@ -19,6 +19,8 @@
       {
         devShell = pkgs.mkShell {
           packages = with pkgs; [
+            just
+
             gcc
           ];
         };
