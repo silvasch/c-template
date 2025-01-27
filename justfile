@@ -1,7 +1,7 @@
 binary_name := "hello"
 
-run: build
-    ./out/{{binary_name}}
+run *ARGS: build
+    ./out/{{binary_name}} {{ARGS}}
 
 build: configure
     mkdir -p out
