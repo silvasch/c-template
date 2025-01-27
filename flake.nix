@@ -27,10 +27,6 @@
             bear
           ];
 
-          # shellHook = ''
-          #   export NIX_INCLUDES_OPTIONS="-isystem ${pkgs.glibc.dev}/include \
-          #     -isystem $(dirname $(dirname $(which clang)))/resource-root/include"
-          # '';
           shellHook = ''
             export CPATH="${pkgs.glibc.dev}/include:$(dirname $(dirname $(which clang)))/resource-root/include:$CPATH"
           '';
