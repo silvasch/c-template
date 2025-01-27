@@ -7,6 +7,7 @@
     {
       flake-utils,
       nixpkgs,
+      self,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -15,6 +16,8 @@
         pkgs = import nixpkgs {
           inherit system;
         };
+
+        pname = "hello";
       in
       {
         devShell = pkgs.mkShell {
@@ -31,6 +34,29 @@
             export CPATH="${pkgs.glibc.dev}/include:$(dirname $(dirname $(which clang)))/resource-root/include:$CPATH"
           '';
         };
+
+        packages.${pname} = pkgs.stdenv.mkDerivation {
+          inherit pname;
+          version = "0.1.0";
+
+          src = ./.;
+
+          nativeBuildInputs = with pkgs; [
+            just
+
+            clang
+          ];
+
+          buildPhase = ''
+            just build
+          '';
+
+          installPhase = ''
+            mkdir -p $out/bin
+            cp out/${pname} $out/bin
+          '';
+        };
+        packages.default = self.packages.${system}.${pname};
       }
     );
 }
