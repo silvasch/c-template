@@ -21,7 +21,10 @@
           packages = with pkgs; [
             just
 
-            gcc
+            clang
+            clang-tools
+
+            bear
           ];
         };
       }

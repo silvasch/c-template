@@ -5,13 +5,16 @@ run: build
 
 build: configure
     mkdir -p out
-    gcc -o out/{{binary_name}} `find build/ -type f -name "*.c"`
+    cc -o out/{{binary_name}} -I include `find build/ -type f -name "*.c"`
 
 configure:
     rm -rf build
     mkdir -p build
     cp -r src/* build/
     cp -r include/* build/
+
+generate-compile-commands:
+    bear -- just build
 
 clean:
     rm -rf build
