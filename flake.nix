@@ -18,11 +18,16 @@
         };
 
         # the name of your project.
-        pname = "hello";
+        pname = "generate-uuids";
 
         buildDependencies = with pkgs; [
+          # build tools
           just
           clang
+          pkg-config
+
+          # libraries
+          libuuid
         ];
         runtimeDependencies = with pkgs; [ ];
         shellTools = with pkgs; [

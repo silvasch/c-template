@@ -1,11 +1,16 @@
-binary_name := "hello"
+binary_name := "generate-uuids"
+
+libuuid := `pkg-config uuid --libs --cflags`
 
 run *ARGS: build
     ./out/{{binary_name}} {{ARGS}}
 
 build: configure
     mkdir -p out
-    cc -o out/{{binary_name}} -I include `find build/ -type f -name "*.c"`
+    cc \
+        -o out/{{binary_name}} \
+        -I include `find build/ -type f -name "*.c"` \
+        {{libuuid}}
 
 configure:
     rm -rf build

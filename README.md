@@ -1,11 +1,13 @@
 # C Template
 
 A template for a C project that uses `just` as the build system, compatible with NixOS.
+It includes a very simple example program to generate some uuids that demonstrates
+argument parsing and including external libraries.
 
 ## Building and Running
 
 To build the project, use `just build`. This will put your resulting executable
-in `out/hello`.
+in `out/generate-uuids`.
 
 You can also directly build *and* run the project using `just run`.
 
@@ -23,4 +25,4 @@ in `justfile` and the `pname` variable in `flake.nix`.
 
 The `justfile` also contains a recipe for generating `compile_commands.json`
 called `generate-compile-commands`. Run this before editing your project
-to get LSP completions from `clang`.
+to get LSP completions from `clangd`.
