@@ -4,6 +4,8 @@
 
 #include "generate.h"
 
+// Generate a uuid.
+// The result should be `free()`'d after use.
 char *generate() {
   uuid_t binuuid;
   uuid_generate_random(binuuid);
