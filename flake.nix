@@ -19,19 +19,23 @@
 
         # the name of your project.
         pname = "hello";
+
+        buildDependencies = with pkgs; [
+          just
+          clang
+        ];
+        runtimeDependencies = with pkgs; [ ];
+        shellTools = with pkgs; [
+          clang-tools
+
+          bear
+        ];
       in
       {
         devShell = pkgs.mkShell {
-          packages = with pkgs; [
-            just
+          packages = buildDependencies ++ runtimeDependencies ++ shellTools;
 
-            clang
-            clang-tools
-
-            bear
-          ];
-
-          # adds the paths to the folders containing the standard headerfiles to CPATH.
+          # adds the paths to the folders containing the standard header files to CPATH.
           # this is not required to compile a c program, but it helps bear to generate
           # compile_commands.json.
           shellHook = ''
@@ -45,15 +49,8 @@
 
           src = ./.;
 
-          # add your build dependencies here.
-          nativeBuildInputs = with pkgs; [
-            just
-
-            clang
-          ];
-
-          # add your runtime dependencies here.
-          buildInputs = [ ];
+          nativeBuildInputs = buildDependencies;
+          buildInputs = runtimeDependencies;
 
           buildPhase = ''
             just build
