@@ -29,11 +29,14 @@
           # libraries
           libuuid
         ];
-        runtimeDependencies = with pkgs; [ ];
+        runtimeDependencies = [ ];
         shellTools = with pkgs; [
+          # lsp
           clang-tools
-
           bear
+
+          # memcheck
+          valgrind
         ];
       in
       {
@@ -73,7 +76,7 @@
     // {
       templates.c = {
         path = ./.;
-        description = "A template for a C project using just as a build system.";
+        description = "A template for a C project.";
       };
 
       templates.default = self.templates.c;
