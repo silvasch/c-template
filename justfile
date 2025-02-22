@@ -39,7 +39,7 @@ generate-compile-commands:
 
 # delete all generated files.
 clean:
-    rm -rf build
-    rm -rf out
-    rm -rf result
-    rm compile_commands.json
+    -rm -rf build
+    -rm -rf out
+    -rm -rf result
+    -rm compile_commands.json
