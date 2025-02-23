@@ -37,6 +37,9 @@
 
           # memcheck
           valgrind
+
+          # debugger
+          lldb
         ];
       in
       {
