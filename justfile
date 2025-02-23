@@ -12,6 +12,7 @@ run *ARGS: build
 build: configure
     mkdir -p out
     cc \
+        -g -Wall -Werror \
         -o out/{{binary_name}} \
         -I include `find build/ -type f -name "*.c"` \
         {{libuuid}} # make sure to include your dependencies here.
@@ -32,6 +33,10 @@ configure:
 # if valgrind does not find any memory leaks.
 memcheck: build
     valgrind --leak-check=full ./out/{{binary_name}}
+
+# launch the debugger
+debugger: build
+    lldb ./out/{{binary_name}}
 
 # generate `compile_commands.json` for your lsp.
 generate-compile-commands:
